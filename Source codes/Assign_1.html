@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Checklist</title>
+    <style>
+        body {
+            padding: left 50px;
+            align-items: center;
+            margin: 2rem;
+            background-color: rgb(248, 246, 255);
+        }
+        h1{
+            font-style:normal;
+        }
+        table{
+            table-layout: auto;
+        }
+        button{
+            width: px; 
+		    padding: 7px; 
+        }
+        button:hover { 
+		background-color: #c1aeff; 
+	    } 
+        input, 
+        textarea { 
+            width: 400px; 
+            padding: 8px; 
+            margin-top: 5px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+        }
+    table { 
+		border-collapse: collapse; 
+		margin-bottom: 20px; 
+		width: 60%; 
+	} 
+
+	th, 
+	td { 
+		border: 1px solid #ddd; 
+		padding: 4px; 
+		text-align: center; 
+	} 
+
+	th { 
+		background-color: #ab93fc; 
+		color: #fff; 
+	} 
+
+    input[type="checkbox"] {
+            margin-right: 5px;
+            width: fit-content;
+        }
+
+    td.task-complete {
+            text-decoration: line-through;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 style="color: blueviolet">Task CheckList</h1>
+    <div>
+        <br>
+        <label for="object"> 
+			Enter Task: 
+		</label> 
+		<input type="text"
+			id="object"
+			placeholder="Enter task"> 
+        <br>
+        <br>
+		<label for="quantity"> 
+			Enter Deadline: 
+		</label> 
+		<input type="date"
+			id="quantity"
+			placeholder="Enter deadline"> 
+        <br>
+        <br>
+        <button onclick="addObject()">
+            Queue task
+        </button>
+        <br>
+        <br>
+    </div>
+    <table id="outputTable">
+        <tr>
+            <th>Status</th>
+            <th>Task Scheduled</th>
+            <th>Deadline</th>
+            <th>Action</th>
+        
+        </tr>
+    </table>
+    <script>
+        function addObject(){
+            let object = document.getElementById("object").value;
+            let quantity = document.getElementById("quantity").value;
+
+            let table = document.getElementById("outputTable");
+            let newRow = table.insertRow(table.rows.length);
+
+            let checkboxCell = newRow.insertCell(0);
+            let objectCell = newRow.insertCell(1);
+            let quantityCell = newRow.insertCell(2);
+            newRow.insertCell(3).innerHTML =  
+                '<button onclick="removeObject(this)">remove</button>'; 
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.addEventListener("change", function() {
+                checkStatus(this, newRow);
+            });
+             
+            checkboxCell.appendChild(checkbox);
+            objectCell.innerHTML = object;
+            quantityCell.innerHTML = quantity;
+
+            clearInputs(); 
+        }
+
+        function removeObject(button) { 
+            
+            let row = button.parentNode.parentNode; 
+            row.parentNode.removeChild(row); 
+        } 
+
+        function checkStatus(checkbox, row) {
+            let taskCell = row.cells[1];
+
+            if (checkbox.checked) {
+                taskCell.classList.add("task-complete");
+            } else {
+                taskCell.classList.remove("checked-incomplete");
+            }
+        }
+
+        
+
+        function clearInputs() { 
+            
+            document.getElementById("object").value = ""; 
+            document.getElementById("quantity").value = ""; 
+        }
+    </script>   
+</body>
+</html>
