@@ -1,0 +1,89 @@
+<!-- Design a responsive navigation bar that changes its appearance and behaviour
+based on the user's scroll position. Implement animations, such as sliding or
+fading, as the user scrolls up or down the webpage. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      transition: padding-top 0.3s ease-in-out;
+    }
+
+    .navbar {
+      position: fixed;
+      width: 100%;
+      background-color: #d9d8ff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      z-index: 1000;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #333;
+      padding: 25px;
+      display: inline-block;
+      transition: color 0.3s ease-in-out;
+      size: 100px;
+    }
+
+    .navbar a:hover {
+      color: #007bff;
+    }
+
+    .content {
+      padding-top: 150px; 
+      padding-left: 100px;
+      padding-right: 100px;
+      font-size: 25px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar" id="navbar">
+  <a href="#">Your Logo</a>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</div>
+
+<div class="content">
+    Welcome to the transformative world of cloud technology—a paradigm shift that has revolutionized the way we store, access, and manage data and applications. In essence, cloud technology represents a shift from traditional, on-premises infrastructure to a dynamic and scalable model, enabling individuals and businesses to leverage computing resources over the internet.
+<br>
+<br>
+    The cloud, in its various forms—public, private, and hybrid—provides a virtualized environment that transcends physical boundaries. It empowers users to access computing resources, such as servers, storage, databases, networking, analytics, and software, on-demand and with remarkable flexibility.
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+      var st = window.scrollY;
+
+      if (st > lastScrollTop) {
+     
+        document.getElementById('navbar').style.top = '-56px';
+      } else {
+        
+        document.getElementById('navbar').style.top = '0';
+      }
+
+      lastScrollTop = st;
+    });
+  });
+</script>
+
+</body>
+</html>
+
